@@ -1,0 +1,29 @@
+﻿<a routerLink="/users/add" class="btn btn-sm btn-success mb-2">Add User</a>
+<div>
+  <h2>User List</h2>
+  <div *ngIf="users.length === 0">No users found.</div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>ID</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.Name }}</td>
+        <td>{{ user.Id }}</td>
+        <td>
+          <div class="form-group">
+            <a class="btn " [routerLink]="['/users/view/', user.Id]">View </a>
+            <a class="btn "[routerLink]="['/users/edit', user.Id]">Edit</a>
+            <a class="btn " href="javascript:void(0);" (click)="deleteUser(user?.Id)"> Delete </a>
+          </div>
+          
+         
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div> 

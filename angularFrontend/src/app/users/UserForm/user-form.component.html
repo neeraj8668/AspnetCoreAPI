@@ -1,0 +1,41 @@
+﻿<div class="row">
+  <h2>{{ isEdit ? 'Edit User' : 'Create User' }}</h2>
+
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+
+    <div class="mb-3">
+      <label for="name" class="form-label">Name:</label>
+      <input type="text" id="name" class="form-control" formControlName="name" 
+      [class.is-invalid]="name.invalid && (name.dirty || name.touched)"/>
+      <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger">Name is required.</div>
+    </div>
+
+    <div class="mb-3">
+      <label for="email" class="form-label">Email:</label>
+      <input type="email" id="email" class="form-control" formControlName="email" 
+      [class.is-invalid]="email.invalid && (email.dirty || email.touched)"/>
+      <div *ngIf="email.invalid && (email.dirty || email.touched) && isEmailInvalid" class="text-danger">
+        {{ userForm.get('email')!.hasError('required') ? 'Email is required.' : 'Invalid email format.' }}
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Products:</label>
+
+      <div *ngFor="let product of allproducts; let i = index" class="form-check products">
+        <input type="checkbox"
+        class="form-check-input"
+               [id]="'product_' + i"
+               [checked]="checkProductIsChecked(product.Id)"
+               (click)="onProductClick(product, $event)" />
+        <label [htmlFor]="'product_' + i"> {{ product.Name }}</label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">{{ isEdit ? 'Update' : 'Create' }}</button>
+      <a [routerLink]="['/users']" class="btn btn-link">Cancel</a>
+    </div>
+     
+  </form>
+</div>

@@ -1,0 +1,8 @@
+.products {
+    margin-bottom: 1rem; /* Add space between checkboxes */
+  }
+  
+  /* If you want to remove default margin and padding on checkboxes */
+  .form-check-input {
+    margin-right: 0.25rem; /* Adjust as needed */
+  }

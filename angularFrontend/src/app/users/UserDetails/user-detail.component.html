@@ -1,0 +1,21 @@
+<div *ngIf="user">
+  <h2>User Details</h2>
+  <dl>
+    <dt>ID:</dt>
+    <dd>{{ user.Id }}</dd>
+    <dt>Name:</dt>
+    <dd>{{ user.Name }}</dd>
+    <dt>Email:</dt>
+    <dd>{{ user.Email }}</dd>
+    <dt>Products:</dt>
+    <dd>
+      <ul>
+        <li *ngFor="let productId of user.ProductIds">
+          {{ getProductById(productId) }}
+        </li>
+      </ul>
+    </dd>
+  </dl>
+  <a [routerLink]="['/users']">Back to List</a>
+</div>
+<div *ngIf="!user">User not found.</div>
